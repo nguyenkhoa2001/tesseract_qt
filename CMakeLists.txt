@@ -127,7 +127,7 @@ endif()
 
 if(${BUILD_STUDIO} AND ${BUILD_RENDERING})
   message("Building studio module")
-  list(APPEND DEPS "qtadvanceddocking NAMES qtadvanceddocking qt5advanceddocking qt6advanceddocking")
+  list(APPEND DEPS "qtadvanceddocking NAMES qtadvanceddocking qt5advanceddocking qt6advanceddocking qtadvanceddocking-qt5")
   add_subdirectory(studio)
 
   if((EXISTS LSB_RELEASE_CODE_SHORT) AND (LSB_RELEASE_CODE_SHORT STREQUAL "noble"))

@@ -5,6 +5,7 @@ find_package(
   qtadvanceddocking
   NAMES
   qtadvanceddocking
+  qtadvanceddocking-qt5
   qt5advanceddocking
   qt6advanceddocking
   REQUIRED)
@@ -14,6 +15,8 @@ elseif(TARGET ads::qt5advanceddocking)
   set(ADS_TARGET ads::qt5advanceddocking)
 elseif(TARGET ads::qt6advanceddocking)
   set(ADS_TARGET ads::qt6advanceddocking)
+elseif(TARGET ads::qtadvanceddocking-qt5)
+  set(ADS_TARGET ads::qtadvanceddocking-qt5)
 endif()
 
 # Load variable for clang tidy args, compiler options and cxx version

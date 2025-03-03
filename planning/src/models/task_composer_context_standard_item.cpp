@@ -66,6 +66,15 @@ void TaskComposerContextStandardItem::ctor(const tesseract_planning::TaskCompose
   /** @todo Add profiles */
   appendRow(createStandardItemBool("successful", input.isSuccessful()));
   appendRow(createStandardItemBool("aborted", input.isAborted()));
-  appendRow(new TaskComposerNodeInfoMapStandardItem("node_infos", input.task_infos.getInfoMap()));
+
+  // Convert the map from plain objects to a map with unique_ptr values.
+  const auto& raw_map = input.task_infos.getInfoMap();
+  std::map<boost::uuids::uuid, std::unique_ptr<tesseract_planning::TaskComposerNodeInfo>> unique_map;
+  for (const auto& kv : raw_map)
+  {
+    // Assuming TaskComposerNodeInfo is copy-constructible. If not, you may need to adjust this.
+    unique_map.emplace(kv.first, std::make_unique<tesseract_planning::TaskComposerNodeInfo>(kv.second));
+  }
+  appendRow(new TaskComposerNodeInfoMapStandardItem(QString("node_infos"), unique_map));
 }
 }  // namespace tesseract_gui
