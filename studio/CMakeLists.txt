@@ -6,12 +6,15 @@ find_package(
   NAMES
   qtadvanceddocking
   qt5advanceddocking
+  qtadvanceddocking-qt5
   qt6advanceddocking
   REQUIRED)
 if(TARGET ads::qtadvanceddocking)
   set(ADS_TARGET ads::qtadvanceddocking)
 elseif(TARGET ads::qt5advanceddocking)
   set(ADS_TARGET ads::qt5advanceddocking)
+elseif(TARGET ads::qtadvanceddocking-qt5)
+  set(ADS_TARGET ads::qtadvanceddocking-qt5)
 elseif(TARGET ads::qt6advanceddocking)
   set(ADS_TARGET ads::qt6advanceddocking)
 endif()
